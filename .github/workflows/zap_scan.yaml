@@ -1,14 +1,15 @@
+name: OWASP ZAP Baseline Scan
 on:
-  schedule:
-    # Runs every day At 01:00.
-    - cron:  '0 1 * * *'
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  zap_scan:
+  build:
     runs-on: ubuntu-latest
-    name: Scan ZAP website
-    steps:
-      - name: ZAP Scan
-        uses: zaproxy/action-full-scan@v0.1.0
-        with:
-          target: 'https://www.zaproxy.org/'
+    steps:     
+    - name: OWASP ZAP Baseline Scan
+      uses: zaproxy/action-baseline@v0.6.1
+      with:
+        target: "https://testnew.occucare.co.in/"
